@@ -1,10 +1,12 @@
 # Trusted Care — AI in Telecom competition project
 
-[![tests](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml/badge.svg)](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
+[![tests](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml/badge.svg)](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 Trusted Care is our entry to the **AI in Telecom** competition: risk-adaptive authorization for a Persian telecom
 customer-support agent that resists social-engineering (e.g. fraudulent SIM replacement) while keeping genuine
 customers moving.
+
+Third-party data and synthetic-data licensing: see [DATA_LICENSE.md](DATA_LICENSE.md). Code license: [MIT](LICENSE).
 
 ## Setup
 
