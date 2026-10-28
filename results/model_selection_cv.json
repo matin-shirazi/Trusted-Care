@@ -1,0 +1,58 @@
+{
+  "best": {
+    "C": 4.0,
+    "prefixes": false,
+    "word": true,
+    "cv_auc": 0.9599
+  },
+  "all": [
+    {
+      "C": 0.5,
+      "prefixes": true,
+      "word": false,
+      "cv_auc": 0.8312
+    },
+    {
+      "C": 0.5,
+      "prefixes": true,
+      "word": true,
+      "cv_auc": 0.8563
+    },
+    {
+      "C": 0.5,
+      "prefixes": false,
+      "word": false,
+      "cv_auc": 0.9154
+    },
+    {
+      "C": 0.5,
+      "prefixes": false,
+      "word": true,
+      "cv_auc": 0.9585
+    },
+    {
+      "C": 4.0,
+      "prefixes": true,
+      "word": false,
+      "cv_auc": 0.8449
+    },
+    {
+      "C": 4.0,
+      "prefixes": true,
+      "word": true,
+      "cv_auc": 0.8721
+    },
+    {
+      "C": 4.0,
+      "prefixes": false,
+      "word": false,
+      "cv_auc": 0.9297
+    },
+    {
+      "C": 4.0,
+      "prefixes": false,
+      "word": true,
+      "cv_auc": 0.9599
+    }
+  ]
+}

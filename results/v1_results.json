@@ -1,0 +1,330 @@
+{
+  "generated_at": "2026-10-26 21:22:38 +0330",
+  "python": "3.13.5",
+  "n_dialogues": 1080,
+  "n_train": 720,
+  "n_test": 360,
+  "thresholds": {
+    "low": 0.35,
+    "high": 0.75
+  },
+  "classifier": {
+    "config": {
+      "C": 4.0,
+      "prefixes": false,
+      "word": true,
+      "cv_auc": 0.9599
+    },
+    "test_roc_auc": 0.6791,
+    "test_attack_recall_at_low": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_benign_fpr_at_low": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "test_attack_recall_at_high": [
+      0.9042,
+      0.8707,
+      0.9417
+    ],
+    "test_benign_fpr_at_high": [
+      0.5167,
+      0.4333,
+      0.6083
+    ]
+  },
+  "external_heldout": {
+    "source": "smd20/social-engineering-attack-texts-persian (MIT), attack-only, used only as extra held-out test",
+    "n": 246,
+    "recall_at_low": [
+      0.8659,
+      0.8211,
+      0.9065
+    ],
+    "recall_at_high": [
+      0.2073,
+      0.1626,
+      0.2602
+    ],
+    "mean_score": 0.5758
+  },
+  "systems": {
+    "trusted_care_full": {
+      "n_attack": 240,
+      "n_benign": 120,
+      "attack_success_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "benign_false_block_rate": [
+        0.55,
+        0.4583,
+        0.6417
+      ],
+      "benign_any_stepup_rate": [
+        0.4833,
+        0.3917,
+        0.5667
+      ],
+      "benign_risk_triggered_friction_rate": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "benign_task_completion_rate": [
+        0.45,
+        0.3583,
+        0.5417
+      ],
+      "benign_pii_exposure_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "escalation_rate_all": [
+        0.85,
+        0.8083,
+        0.8889
+      ],
+      "intent_accuracy": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "latency_ms_mean": 1.313,
+      "latency_ms_p95": 1.55
+    },
+    "baseline_keyword_blacklist": {
+      "n_attack": 240,
+      "n_benign": 120,
+      "attack_success_rate": [
+        0.1792,
+        0.1374,
+        0.2333
+      ],
+      "benign_false_block_rate": [
+        0.0333,
+        0.0083,
+        0.0667
+      ],
+      "benign_any_stepup_rate": [
+        0.6667,
+        0.575,
+        0.7502
+      ],
+      "benign_risk_triggered_friction_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "benign_task_completion_rate": [
+        0.9667,
+        0.9333,
+        0.9917
+      ],
+      "benign_pii_exposure_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "escalation_rate_all": [
+        0.4611,
+        0.4111,
+        0.5111
+      ],
+      "intent_accuracy": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "latency_ms_mean": 0.047,
+      "latency_ms_p95": 0.059
+    },
+    "baseline_static_rules": {
+      "n_attack": 240,
+      "n_benign": 120,
+      "attack_success_rate": [
+        0.3708,
+        0.3083,
+        0.4333
+      ],
+      "benign_false_block_rate": [
+        0.0333,
+        0.0083,
+        0.0667
+      ],
+      "benign_any_stepup_rate": [
+        0.6667,
+        0.575,
+        0.7502
+      ],
+      "benign_risk_triggered_friction_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "benign_task_completion_rate": [
+        0.9667,
+        0.9333,
+        0.9917
+      ],
+      "benign_pii_exposure_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "escalation_rate_all": [
+        0.2417,
+        0.1972,
+        0.2861
+      ],
+      "intent_accuracy": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "latency_ms_mean": 0.015,
+      "latency_ms_p95": 0.02
+    },
+    "ablation_no_classifier": {
+      "n_attack": 240,
+      "n_benign": 120,
+      "attack_success_rate": [
+        0.0375,
+        0.0167,
+        0.0625
+      ],
+      "benign_false_block_rate": [
+        0.0583,
+        0.0248,
+        0.1
+      ],
+      "benign_any_stepup_rate": [
+        0.7833,
+        0.7081,
+        0.8583
+      ],
+      "benign_risk_triggered_friction_rate": [
+        0.3333,
+        0.25,
+        0.4083
+      ],
+      "benign_task_completion_rate": [
+        0.9417,
+        0.9,
+        0.9752
+      ],
+      "benign_pii_exposure_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "escalation_rate_all": [
+        0.6167,
+        0.5667,
+        0.6639
+      ],
+      "intent_accuracy": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "latency_ms_mean": 0.016,
+      "latency_ms_p95": 0.022
+    },
+    "ablation_no_least_privilege": {
+      "n_attack": 240,
+      "n_benign": 120,
+      "attack_success_rate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "benign_false_block_rate": [
+        0.55,
+        0.4583,
+        0.6417
+      ],
+      "benign_any_stepup_rate": [
+        0.4833,
+        0.3917,
+        0.5667
+      ],
+      "benign_risk_triggered_friction_rate": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "benign_task_completion_rate": [
+        0.45,
+        0.3583,
+        0.5417
+      ],
+      "benign_pii_exposure_rate": [
+        0.4083,
+        0.3167,
+        0.4917
+      ],
+      "escalation_rate_all": [
+        0.85,
+        0.8083,
+        0.8889
+      ],
+      "intent_accuracy": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "latency_ms_mean": 1.238,
+      "latency_ms_p95": 1.5
+    }
+  },
+  "attack_success_by_cue": {
+    "trusted_care_full": {
+      "bypass": 0.0,
+      "identity_mismatch": 0.0,
+      "impersonation_relative": 0.0,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "urgency": 0.0
+    },
+    "baseline_keyword_blacklist": {
+      "bypass": 0.0,
+      "identity_mismatch": 0.25,
+      "impersonation_relative": 0.425,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "urgency": 0.4
+    },
+    "baseline_static_rules": {
+      "bypass": 0.35,
+      "identity_mismatch": 0.25,
+      "impersonation_relative": 0.425,
+      "impersonation_staff": 0.325,
+      "multi_turn_escalation": 0.475,
+      "urgency": 0.4
+    },
+    "ablation_no_classifier": {
+      "bypass": 0.0,
+      "identity_mismatch": 0.025,
+      "impersonation_relative": 0.05,
+      "impersonation_staff": 0.025,
+      "multi_turn_escalation": 0.05,
+      "urgency": 0.075
+    },
+    "ablation_no_least_privilege": {
+      "bypass": 0.0,
+      "identity_mismatch": 0.0,
+      "impersonation_relative": 0.0,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "urgency": 0.0
+    }
+  },
+  "runtime_s": 13.0
+}

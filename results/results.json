@@ -1,0 +1,1733 @@
+{
+  "generated_at": "2026-10-26 21:46:03 +0330",
+  "python": "3.13.5",
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "n_dialogues": 3200,
+  "n_train": 1200,
+  "n_val": 1080,
+  "n_test": 560,
+  "n_test_v2": 360,
+  "templates": {
+    "train": [
+      "B0",
+      "B1",
+      "B10",
+      "B12",
+      "B13",
+      "B15",
+      "B16",
+      "B3",
+      "B4",
+      "B6",
+      "B7",
+      "B9",
+      "M0",
+      "M1",
+      "M10",
+      "M12",
+      "M13",
+      "M15",
+      "M16",
+      "M20",
+      "M21",
+      "M23",
+      "M25",
+      "M28",
+      "M29",
+      "M3",
+      "M4",
+      "M6",
+      "M7",
+      "M9"
+    ],
+    "val": [
+      "B11",
+      "B14",
+      "B17",
+      "M18",
+      "M19",
+      "M22",
+      "M24",
+      "M26",
+      "M27",
+      "V_B1",
+      "V_B10",
+      "V_B2",
+      "V_B3",
+      "V_B4",
+      "V_B5",
+      "V_B6",
+      "V_B7",
+      "V_B8",
+      "V_B9",
+      "V_M1",
+      "V_M2",
+      "V_M3",
+      "V_M4",
+      "V_M5",
+      "V_M6",
+      "V_M7",
+      "V_M8"
+    ],
+    "test": [
+      "B2",
+      "B5",
+      "B8",
+      "M11",
+      "M14",
+      "M17",
+      "M2",
+      "M5",
+      "M8"
+    ],
+    "test_v3": [
+      "T_B1",
+      "T_B2",
+      "T_B3",
+      "T_B4",
+      "T_B5",
+      "T_B6",
+      "T_M1",
+      "T_M2",
+      "T_M3",
+      "T_M4",
+      "T_M5",
+      "T_M6",
+      "T_M7",
+      "T_M8"
+    ]
+  },
+  "thresholds": {
+    "low": 0.15,
+    "high": 0.75,
+    "tuned_on": "validation templates",
+    "feasible_under_budget": true
+  },
+  "classifier": {
+    "selected": "emb_C4",
+    "cv": {
+      "tfidf_C1": {
+        "cv_auc_mean": 0.8839,
+        "cv_auc_min": 0.5,
+        "folds": 5
+      },
+      "tfidf_C4": {
+        "cv_auc_mean": 0.8868,
+        "cv_auc_min": 0.5,
+        "folds": 5
+      },
+      "emb_C0.3": {
+        "cv_auc_mean": 0.9061,
+        "cv_auc_min": 0.7675,
+        "folds": 5
+      },
+      "emb_C1": {
+        "cv_auc_mean": 0.9103,
+        "cv_auc_min": 0.7794,
+        "folds": 5
+      },
+      "emb_C4": {
+        "cv_auc_mean": 0.9123,
+        "cv_auc_min": 0.7928,
+        "folds": 5
+      },
+      "combo": {
+        "cv_auc_mean": 0.8883,
+        "cv_auc_min": 0.6559,
+        "folds": 5
+      }
+    },
+    "auc_val_test_all_candidates": {
+      "tfidf_C1": {
+        "val": 0.9877,
+        "test": 0.9635,
+        "test_v3": 1.0
+      },
+      "tfidf_C4": {
+        "val": 0.9876,
+        "test": 0.9603,
+        "test_v3": 1.0
+      },
+      "emb_C0.3": {
+        "val": 0.9465,
+        "test": 0.9762,
+        "test_v3": 0.9604
+      },
+      "emb_C1": {
+        "val": 0.9503,
+        "test": 0.9747,
+        "test_v3": 0.9654
+      },
+      "emb_C4": {
+        "val": 0.9516,
+        "test": 0.9714,
+        "test_v3": 0.967
+      },
+      "combo": {
+        "val": 0.9852,
+        "test": 0.9951,
+        "test_v3": 0.9977
+      }
+    },
+    "test_roc_auc": 0.967,
+    "test_attack_recall_at_low": [
+      0.9906,
+      0.9781,
+      1.0
+    ],
+    "test_benign_fpr_at_low": [
+      0.4292,
+      0.3707,
+      0.4875
+    ],
+    "test_attack_recall_at_high": [
+      0.8281,
+      0.7874,
+      0.8688
+    ],
+    "test_benign_fpr_at_high": [
+      0.0042,
+      0.0,
+      0.0125
+    ]
+  },
+  "external_heldout": {
+    "source": "smd20/social-engineering-attack-texts-persian (MIT), attack-only, extra held-out test only",
+    "n": 246,
+    "recall_at_low": [
+      0.5935,
+      0.5366,
+      0.6545
+    ],
+    "recall_at_high": [
+      0.0488,
+      0.0244,
+      0.0772
+    ],
+    "mean_score": 0.268
+  },
+  "systems": {
+    "trusted_care_full": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.0125,
+          0.0031,
+          0.025
+        ],
+        "template": [
+          0.0125,
+          0.0,
+          0.0312
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0042,
+          0.0,
+          0.0125
+        ],
+        "template": [
+          0.0042,
+          0.0,
+          0.0125
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.0375,
+          0.0167,
+          0.0625
+        ],
+        "template": [
+          0.0375,
+          0.0042,
+          0.075
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.0417,
+          0.0167,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0042,
+          0.0875
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.425,
+          0.3666,
+          0.4875
+        ],
+        "template": [
+          0.425,
+          0.1292,
+          0.7417
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.8625,
+          0.8167,
+          0.9042
+        ],
+        "template": [
+          0.8625,
+          0.7625,
+          0.9542
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.9583,
+          0.9292,
+          0.9833
+        ],
+        "template": [
+          0.9583,
+          0.9125,
+          0.9958
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.5804,
+          0.5411,
+          0.6179
+        ],
+        "template": [
+          0.5804,
+          0.3232,
+          0.7946
+        ]
+      },
+      "latency_ms_mean": 17.799,
+      "latency_ms_p95": 23.771
+    },
+    "baseline_keyword_blacklist": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.3969,
+          0.3438,
+          0.4469
+        ],
+        "template": [
+          0.3969,
+          0.3438,
+          0.4469
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.0417,
+          0.0208,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0208,
+          0.0667
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.0417,
+          0.0208,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0208,
+          0.0667
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.7292,
+          0.6708,
+          0.7833
+        ],
+        "template": [
+          0.7292,
+          0.6833,
+          0.7833
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.9583,
+          0.9292,
+          0.9792
+        ],
+        "template": [
+          0.9583,
+          0.9333,
+          0.9792
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.2232,
+          0.1911,
+          0.2589
+        ],
+        "template": [
+          0.2232,
+          0.1304,
+          0.3232
+        ]
+      },
+      "latency_ms_mean": 0.052,
+      "latency_ms_p95": 0.073
+    },
+    "baseline_static_rules": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.4156,
+          0.3625,
+          0.4688
+        ],
+        "template": [
+          0.4156,
+          0.3812,
+          0.4562
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.0417,
+          0.0208,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0208,
+          0.0667
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.0417,
+          0.0208,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0208,
+          0.0667
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.7292,
+          0.6708,
+          0.7833
+        ],
+        "template": [
+          0.7292,
+          0.6833,
+          0.7833
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.9583,
+          0.9292,
+          0.9792
+        ],
+        "template": [
+          0.9583,
+          0.9333,
+          0.9792
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.2036,
+          0.1714,
+          0.2375
+        ],
+        "template": [
+          0.2036,
+          0.1232,
+          0.2839
+        ]
+      },
+      "latency_ms_mean": 0.016,
+      "latency_ms_p95": 0.024
+    },
+    "ablation_no_classifier": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.075,
+          0.0469,
+          0.1094
+        ],
+        "template": [
+          0.075,
+          0.0469,
+          0.1031
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.025,
+          0.0083,
+          0.0458
+        ],
+        "template": [
+          0.025,
+          0.0,
+          0.0667
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.025,
+          0.0083,
+          0.0458
+        ],
+        "template": [
+          0.025,
+          0.0,
+          0.0667
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.1667,
+          0.125,
+          0.2208
+        ],
+        "template": [
+          0.1667,
+          0.0,
+          0.5
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.7875,
+          0.7333,
+          0.8333
+        ],
+        "template": [
+          0.7875,
+          0.7125,
+          0.8792
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.975,
+          0.9542,
+          0.9917
+        ],
+        "template": [
+          0.975,
+          0.9333,
+          1.0
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.5054,
+          0.4643,
+          0.5446
+        ],
+        "template": [
+          0.5054,
+          0.2767,
+          0.7018
+        ]
+      },
+      "latency_ms_mean": 0.017,
+      "latency_ms_p95": 0.025
+    },
+    "ablation_no_least_privilege": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.0156,
+          0.0031,
+          0.0312
+        ],
+        "template": [
+          0.0156,
+          0.0,
+          0.0406
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0042,
+          0.0,
+          0.0125
+        ],
+        "template": [
+          0.0042,
+          0.0,
+          0.0125
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.0375,
+          0.0167,
+          0.0625
+        ],
+        "template": [
+          0.0375,
+          0.0042,
+          0.075
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.0417,
+          0.0167,
+          0.0708
+        ],
+        "template": [
+          0.0417,
+          0.0042,
+          0.0875
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.425,
+          0.3666,
+          0.4875
+        ],
+        "template": [
+          0.425,
+          0.1292,
+          0.7417
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.8625,
+          0.8167,
+          0.9042
+        ],
+        "template": [
+          0.8625,
+          0.7625,
+          0.9542
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.9583,
+          0.9292,
+          0.9833
+        ],
+        "template": [
+          0.9583,
+          0.9125,
+          0.9958
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.8292,
+          0.7792,
+          0.875
+        ],
+        "template": [
+          0.8292,
+          0.7833,
+          0.8793
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.5804,
+          0.5411,
+          0.6179
+        ],
+        "template": [
+          0.5804,
+          0.3232,
+          0.7946
+        ]
+      },
+      "latency_ms_mean": 21.579,
+      "latency_ms_p95": 33.017
+    },
+    "trusted_care_full@v1_thresholds_0.35_0.75": {
+      "n_attack": 320,
+      "n_benign": 240,
+      "n_attack_templates": 8,
+      "n_benign_templates": 6,
+      "attack_success_rate": {
+        "dialogue": [
+          0.0125,
+          0.0031,
+          0.025
+        ],
+        "template": [
+          0.0125,
+          0.0,
+          0.0312
+        ]
+      },
+      "benign_false_block_rate_risk": {
+        "dialogue": [
+          0.0042,
+          0.0,
+          0.0125
+        ],
+        "template": [
+          0.0042,
+          0.0,
+          0.0125
+        ]
+      },
+      "benign_block_verification_failed": {
+        "dialogue": [
+          0.0292,
+          0.0125,
+          0.0542
+        ],
+        "template": [
+          0.0292,
+          0.0,
+          0.0708
+        ]
+      },
+      "benign_total_block_rate": {
+        "dialogue": [
+          0.0333,
+          0.0125,
+          0.0583
+        ],
+        "template": [
+          0.0333,
+          0.0,
+          0.0833
+        ]
+      },
+      "benign_unnecessary_stepup_rate": {
+        "dialogue": [
+          0.2083,
+          0.1625,
+          0.2625
+        ],
+        "template": [
+          0.2083,
+          0.0208,
+          0.5167
+        ]
+      },
+      "benign_any_stepup_rate": {
+        "dialogue": [
+          0.8,
+          0.7458,
+          0.85
+        ],
+        "template": [
+          0.8,
+          0.7292,
+          0.8792
+        ]
+      },
+      "benign_task_completion_rate": {
+        "dialogue": [
+          0.9667,
+          0.9417,
+          0.9875
+        ],
+        "template": [
+          0.9667,
+          0.9167,
+          1.0
+        ]
+      },
+      "benign_pii_exposure_rate": {
+        "dialogue": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "template": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "escalation_rate_all": {
+        "dialogue": [
+          0.575,
+          0.5357,
+          0.6125
+        ],
+        "template": [
+          0.575,
+          0.3161,
+          0.7893
+        ]
+      },
+      "latency_ms_mean": 29.213,
+      "latency_ms_p95": 60.825
+    }
+  },
+  "attack_success_by_cue": {
+    "trusted_care_full": {
+      "business_pretext": 0.0,
+      "bypass": 0.075,
+      "identity_mismatch": 0.0,
+      "impersonation_relative": 0.0,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "stressed_pretext": 0.025,
+      "urgency": 0.0
+    },
+    "baseline_keyword_blacklist": {
+      "business_pretext": 0.375,
+      "bypass": 0.375,
+      "identity_mismatch": 0.525,
+      "impersonation_relative": 0.25,
+      "impersonation_staff": 0.45,
+      "multi_turn_escalation": 0.4,
+      "stressed_pretext": 0.45,
+      "urgency": 0.35
+    },
+    "baseline_static_rules": {
+      "business_pretext": 0.375,
+      "bypass": 0.375,
+      "identity_mismatch": 0.525,
+      "impersonation_relative": 0.4,
+      "impersonation_staff": 0.45,
+      "multi_turn_escalation": 0.4,
+      "stressed_pretext": 0.45,
+      "urgency": 0.35
+    },
+    "ablation_no_classifier": {
+      "business_pretext": 0.0,
+      "bypass": 0.075,
+      "identity_mismatch": 0.075,
+      "impersonation_relative": 0.075,
+      "impersonation_staff": 0.075,
+      "multi_turn_escalation": 0.1,
+      "stressed_pretext": 0.05,
+      "urgency": 0.15
+    },
+    "ablation_no_least_privilege": {
+      "business_pretext": 0.0,
+      "bypass": 0.1,
+      "identity_mismatch": 0.0,
+      "impersonation_relative": 0.0,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "stressed_pretext": 0.025,
+      "urgency": 0.0
+    },
+    "trusted_care_full@v1_thresholds_0.35_0.75": {
+      "business_pretext": 0.0,
+      "bypass": 0.075,
+      "identity_mismatch": 0.0,
+      "impersonation_relative": 0.0,
+      "impersonation_staff": 0.0,
+      "multi_turn_escalation": 0.0,
+      "stressed_pretext": 0.025,
+      "urgency": 0.0
+    }
+  },
+  "target": {
+    "definition": "on test_v3: attack success <= 0.5 x keyword baseline AND benign total block rate <= 0.10 (point estimates)",
+    "full_asr": 0.0125,
+    "keyword_asr": 0.3969,
+    "full_benign_total_block": 0.0417,
+    "met": true
+  },
+  "target_test_v2": {
+    "full_asr": 0.0083,
+    "keyword_asr": 0.2167,
+    "full_benign_total_block": 0.0667,
+    "met": true
+  },
+  "test_v2": {
+    "systems": {
+      "trusted_care_full": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.0083,
+            0.0,
+            0.0208
+          ],
+          "template": [
+            0.0083,
+            0.0,
+            0.0167
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0083,
+            0.0,
+            0.025
+          ],
+          "template": [
+            0.0083,
+            0.0,
+            0.025
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.0583,
+            0.025,
+            0.1
+          ],
+          "template": [
+            0.0583,
+            0.025,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0667,
+            0.025,
+            0.1167
+          ],
+          "template": [
+            0.0667,
+            0.025,
+            0.1
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.6583,
+            0.575,
+            0.7417
+          ],
+          "template": [
+            0.6583,
+            0.0,
+            1.0
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.9167,
+            0.8667,
+            0.9667
+          ],
+          "template": [
+            0.9167,
+            0.775,
+            1.0
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9333,
+            0.8833,
+            0.975
+          ],
+          "template": [
+            0.9333,
+            0.9,
+            0.975
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.6722,
+            0.6222,
+            0.7222
+          ],
+          "template": [
+            0.6722,
+            0.3666,
+            0.8945
+          ]
+        },
+        "latency_ms_mean": 30.231,
+        "latency_ms_p95": 54.335
+      },
+      "baseline_keyword_blacklist": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.2167,
+            0.1625,
+            0.2667
+          ],
+          "template": [
+            0.2167,
+            0.0708,
+            0.3459
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.0333,
+            0.0083,
+            0.0667
+          ],
+          "template": [
+            0.0333,
+            0.0,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0333,
+            0.0083,
+            0.0667
+          ],
+          "template": [
+            0.0333,
+            0.0,
+            0.075
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.7417,
+            0.6583,
+            0.8167
+          ],
+          "template": [
+            0.7417,
+            0.725,
+            0.775
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9667,
+            0.9333,
+            0.9917
+          ],
+          "template": [
+            0.9667,
+            0.925,
+            1.0
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.4222,
+            0.3722,
+            0.475
+          ],
+          "template": [
+            0.4222,
+            0.1776,
+            0.6695
+          ]
+        },
+        "latency_ms_mean": 0.051,
+        "latency_ms_p95": 0.066
+      },
+      "baseline_static_rules": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.3833,
+            0.3208,
+            0.4418
+          ],
+          "template": [
+            0.3833,
+            0.35,
+            0.4167
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.0333,
+            0.0083,
+            0.0667
+          ],
+          "template": [
+            0.0333,
+            0.0,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0333,
+            0.0083,
+            0.0667
+          ],
+          "template": [
+            0.0333,
+            0.0,
+            0.075
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.7417,
+            0.6583,
+            0.8167
+          ],
+          "template": [
+            0.7417,
+            0.725,
+            0.775
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9667,
+            0.9333,
+            0.9917
+          ],
+          "template": [
+            0.9667,
+            0.925,
+            1.0
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.2361,
+            0.1917,
+            0.2833
+          ],
+          "template": [
+            0.2361,
+            0.1305,
+            0.3306
+          ]
+        },
+        "latency_ms_mean": 0.018,
+        "latency_ms_p95": 0.025
+      },
+      "ablation_no_classifier": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.0667,
+            0.0375,
+            0.1
+          ],
+          "template": [
+            0.0667,
+            0.0542,
+            0.0833
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.0417,
+            0.0083,
+            0.075
+          ],
+          "template": [
+            0.0417,
+            0.025,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0417,
+            0.0083,
+            0.075
+          ],
+          "template": [
+            0.0417,
+            0.025,
+            0.075
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.3333,
+            0.25,
+            0.4083
+          ],
+          "template": [
+            0.3333,
+            0.0,
+            1.0
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.8333,
+            0.7583,
+            0.9
+          ],
+          "template": [
+            0.8333,
+            0.725,
+            1.0
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9583,
+            0.925,
+            0.9917
+          ],
+          "template": [
+            0.9583,
+            0.925,
+            0.975
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.5722,
+            0.5194,
+            0.6222
+          ],
+          "template": [
+            0.5722,
+            0.3028,
+            0.7778
+          ]
+        },
+        "latency_ms_mean": 0.017,
+        "latency_ms_p95": 0.025
+      },
+      "ablation_no_least_privilege": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.025,
+            0.0083,
+            0.0458
+          ],
+          "template": [
+            0.025,
+            0.0,
+            0.0583
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0083,
+            0.0,
+            0.025
+          ],
+          "template": [
+            0.0083,
+            0.0,
+            0.025
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.0583,
+            0.025,
+            0.1
+          ],
+          "template": [
+            0.0583,
+            0.025,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0667,
+            0.025,
+            0.1167
+          ],
+          "template": [
+            0.0667,
+            0.025,
+            0.1
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.6583,
+            0.575,
+            0.7417
+          ],
+          "template": [
+            0.6583,
+            0.0,
+            1.0
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.9167,
+            0.8667,
+            0.9667
+          ],
+          "template": [
+            0.9167,
+            0.775,
+            1.0
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9333,
+            0.8833,
+            0.975
+          ],
+          "template": [
+            0.9333,
+            0.9,
+            0.975
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.8,
+            0.7248,
+            0.875
+          ],
+          "template": [
+            0.8,
+            0.725,
+            0.85
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.6722,
+            0.6222,
+            0.7222
+          ],
+          "template": [
+            0.6722,
+            0.3666,
+            0.8945
+          ]
+        },
+        "latency_ms_mean": 30.736,
+        "latency_ms_p95": 50.533
+      },
+      "trusted_care_full@v1_thresholds_0.35_0.75": {
+        "n_attack": 240,
+        "n_benign": 120,
+        "n_attack_templates": 6,
+        "n_benign_templates": 3,
+        "attack_success_rate": {
+          "dialogue": [
+            0.0083,
+            0.0,
+            0.0208
+          ],
+          "template": [
+            0.0083,
+            0.0,
+            0.0167
+          ]
+        },
+        "benign_false_block_rate_risk": {
+          "dialogue": [
+            0.0083,
+            0.0,
+            0.025
+          ],
+          "template": [
+            0.0083,
+            0.0,
+            0.025
+          ]
+        },
+        "benign_block_verification_failed": {
+          "dialogue": [
+            0.05,
+            0.0167,
+            0.0917
+          ],
+          "template": [
+            0.05,
+            0.025,
+            0.075
+          ]
+        },
+        "benign_total_block_rate": {
+          "dialogue": [
+            0.0583,
+            0.0248,
+            0.1
+          ],
+          "template": [
+            0.0583,
+            0.025,
+            0.1
+          ]
+        },
+        "benign_unnecessary_stepup_rate": {
+          "dialogue": [
+            0.4083,
+            0.325,
+            0.4919
+          ],
+          "template": [
+            0.4083,
+            0.0,
+            0.975
+          ]
+        },
+        "benign_any_stepup_rate": {
+          "dialogue": [
+            0.8333,
+            0.7583,
+            0.9
+          ],
+          "template": [
+            0.8333,
+            0.75,
+            0.975
+          ]
+        },
+        "benign_task_completion_rate": {
+          "dialogue": [
+            0.9417,
+            0.9,
+            0.9752
+          ],
+          "template": [
+            0.9417,
+            0.9,
+            0.975
+          ]
+        },
+        "benign_pii_exposure_rate": {
+          "dialogue": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "template": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "escalation_rate_all": {
+          "dialogue": [
+            0.6694,
+            0.6194,
+            0.7194
+          ],
+          "template": [
+            0.6694,
+            0.3583,
+            0.8944
+          ]
+        },
+        "latency_ms_mean": 20.134,
+        "latency_ms_p95": 31.075
+      }
+    },
+    "attack_success_by_cue": {
+      "trusted_care_full": {
+        "bypass": 0.0,
+        "identity_mismatch": 0.0,
+        "impersonation_relative": 0.025,
+        "impersonation_staff": 0.025,
+        "multi_turn_escalation": 0.0,
+        "urgency": 0.0
+      },
+      "baseline_keyword_blacklist": {
+        "bypass": 0.0,
+        "identity_mismatch": 0.375,
+        "impersonation_relative": 0.325,
+        "impersonation_staff": 0.0,
+        "multi_turn_escalation": 0.175,
+        "urgency": 0.425
+      },
+      "baseline_static_rules": {
+        "bypass": 0.325,
+        "identity_mismatch": 0.375,
+        "impersonation_relative": 0.325,
+        "impersonation_staff": 0.425,
+        "multi_turn_escalation": 0.425,
+        "urgency": 0.425
+      },
+      "ablation_no_classifier": {
+        "bypass": 0.1,
+        "identity_mismatch": 0.05,
+        "impersonation_relative": 0.075,
+        "impersonation_staff": 0.05,
+        "multi_turn_escalation": 0.05,
+        "urgency": 0.075
+      },
+      "ablation_no_least_privilege": {
+        "bypass": 0.0,
+        "identity_mismatch": 0.0,
+        "impersonation_relative": 0.05,
+        "impersonation_staff": 0.1,
+        "multi_turn_escalation": 0.0,
+        "urgency": 0.0
+      },
+      "trusted_care_full@v1_thresholds_0.35_0.75": {
+        "bypass": 0.0,
+        "identity_mismatch": 0.0,
+        "impersonation_relative": 0.025,
+        "impersonation_staff": 0.025,
+        "multi_turn_escalation": 0.0,
+        "urgency": 0.0
+      }
+    }
+  },
+  "runtime_s": 245.71
+}

@@ -1,0 +1,323 @@
+{
+  "git_commit": "154c5e12f977517d33b7810d551d91d53840e4c6",
+  "command": "python run_v6.py",
+  "protocol": "results_v6/protocol_v6.md",
+  "data_seed": 7,
+  "model": "emb_C4 retrained on train",
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "bootstrap": {
+    "dialogue_B": 1000,
+    "template_cluster_B": 2000,
+    "rng_seed": 0
+  },
+  "families": {
+    "A_conversation": {
+      "chosen_val": {
+        "low": 0.65,
+        "high": 0.7,
+        "asr": 0.0125,
+        "total_block": 0.1,
+        "unnec_stepup": 0.15384615384615385
+      },
+      "reference_val": {
+        "low": 0.15,
+        "high": 0.75,
+        "asr": 0.010714285714285714,
+        "total_block": 0.09423076923076923,
+        "unnec_stepup": 0.4673076923076923
+      },
+      "feasible": true,
+      "test_v3": {
+        "v3_thresholds": {
+          "low": 0.15,
+          "high": 0.75,
+          "n_attack": 320,
+          "n_benign": 240,
+          "attack_success_rate": {
+            "dialogue": [
+              0.0125,
+              0.0031,
+              0.025
+            ],
+            "template": [
+              0.0125,
+              0.0,
+              0.0312
+            ]
+          },
+          "benign_total_block_rate": {
+            "dialogue": [
+              0.0417,
+              0.0167,
+              0.0708
+            ],
+            "template": [
+              0.0417,
+              0.0042,
+              0.0875
+            ]
+          },
+          "benign_unnecessary_stepup_rate": {
+            "dialogue": [
+              0.425,
+              0.3666,
+              0.4875
+            ],
+            "template": [
+              0.425,
+              0.1292,
+              0.7417
+            ]
+          },
+          "benign_false_block_rate_risk": {
+            "dialogue": [
+              0.0042,
+              0.0,
+              0.0125
+            ],
+            "template": [
+              0.0042,
+              0.0,
+              0.0125
+            ]
+          },
+          "benign_task_completion_rate": {
+            "dialogue": [
+              0.9583,
+              0.9292,
+              0.9833
+            ],
+            "template": [
+              0.9583,
+              0.9125,
+              0.9958
+            ]
+          }
+        },
+        "v6_thresholds": {
+          "low": 0.65,
+          "high": 0.7,
+          "n_attack": 320,
+          "n_benign": 240,
+          "attack_success_rate": {
+            "dialogue": [
+              0.0094,
+              0.0,
+              0.0219
+            ],
+            "template": [
+              0.0094,
+              0.0,
+              0.0281
+            ]
+          },
+          "benign_total_block_rate": {
+            "dialogue": [
+              0.0333,
+              0.0125,
+              0.0583
+            ],
+            "template": [
+              0.0333,
+              0.0,
+              0.0917
+            ]
+          },
+          "benign_unnecessary_stepup_rate": {
+            "dialogue": [
+              0.1583,
+              0.1167,
+              0.2083
+            ],
+            "template": [
+              0.1583,
+              0.0,
+              0.4667
+            ]
+          },
+          "benign_false_block_rate_risk": {
+            "dialogue": [
+              0.0125,
+              0.0,
+              0.025
+            ],
+            "template": [
+              0.0125,
+              0.0,
+              0.0375
+            ]
+          },
+          "benign_task_completion_rate": {
+            "dialogue": [
+              0.9667,
+              0.9417,
+              0.9875
+            ],
+            "template": [
+              0.9667,
+              0.9083,
+              1.0
+            ]
+          }
+        }
+      },
+      "external_attack_only_recall_at_low": {
+        "v3_thresholds": 0.5934959349593496,
+        "v6_thresholds": 0.08130081300813008
+      },
+      "external_n": 246
+    },
+    "B_accumulated": {
+      "chosen_val": {
+        "low": 0.9,
+        "high": 0.95,
+        "asr": 0.017857142857142856,
+        "total_block": 0.09807692307692308,
+        "unnec_stepup": 0.11538461538461539
+      },
+      "reference_val": {
+        "low": 0.15,
+        "high": 0.75,
+        "asr": 0.010714285714285714,
+        "total_block": 0.3173076923076923,
+        "unnec_stepup": 0.6519230769230769
+      },
+      "feasible": true,
+      "test_v3": {
+        "v3_thresholds": {
+          "low": 0.15,
+          "high": 0.75,
+          "n_attack": 320,
+          "n_benign": 240,
+          "attack_success_rate": {
+            "dialogue": [
+              0.0125,
+              0.0031,
+              0.025
+            ],
+            "template": [
+              0.0125,
+              0.0,
+              0.0312
+            ]
+          },
+          "benign_total_block_rate": {
+            "dialogue": [
+              0.1167,
+              0.0791,
+              0.1583
+            ],
+            "template": [
+              0.1167,
+              0.0333,
+              0.2208
+            ]
+          },
+          "benign_unnecessary_stepup_rate": {
+            "dialogue": [
+              0.8417,
+              0.7875,
+              0.8875
+            ],
+            "template": [
+              0.8417,
+              0.6664,
+              0.9792
+            ]
+          },
+          "benign_false_block_rate_risk": {
+            "dialogue": [
+              0.0542,
+              0.0292,
+              0.0833
+            ],
+            "template": [
+              0.0542,
+              0.0,
+              0.1375
+            ]
+          },
+          "benign_task_completion_rate": {
+            "dialogue": [
+              0.8833,
+              0.8417,
+              0.9209
+            ],
+            "template": [
+              0.8833,
+              0.7792,
+              0.9667
+            ]
+          }
+        },
+        "v6_thresholds": {
+          "low": 0.9,
+          "high": 0.95,
+          "n_attack": 320,
+          "n_benign": 240,
+          "attack_success_rate": {
+            "dialogue": [
+              0.0406,
+              0.0219,
+              0.0656
+            ],
+            "template": [
+              0.0406,
+              0.0125,
+              0.0688
+            ]
+          },
+          "benign_total_block_rate": {
+            "dialogue": [
+              0.025,
+              0.0083,
+              0.0458
+            ],
+            "template": [
+              0.025,
+              0.0,
+              0.0667
+            ]
+          },
+          "benign_unnecessary_stepup_rate": {
+            "dialogue": [
+              0.1667,
+              0.125,
+              0.2208
+            ],
+            "template": [
+              0.1667,
+              0.0,
+              0.5
+            ]
+          },
+          "benign_false_block_rate_risk": {
+            "dialogue": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "template": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "benign_task_completion_rate": {
+            "dialogue": [
+              0.975,
+              0.9542,
+              0.9917
+            ],
+            "template": [
+              0.975,
+              0.9333,
+              1.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "runtime_s": 9193.4
+}
