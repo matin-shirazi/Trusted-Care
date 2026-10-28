@@ -86,7 +86,7 @@ streamlit run app.py       # Persian RTL demo (benign vs social-engineering SIM 
 | File | Role |
 |---|---|
 | `trusted_care/backend.py` | Fake customer DB; tools `get_balance, get_plan, change_plan, sim_replacement, account_recovery, ownership_transfer, read_PII`; `TOOL_FIELDS` least-privilege map. |
-| `trusted_care/data.py` | Persian multi-turn dialogue generator: 18 benign + 30 malicious templates over the **same operations and slot values**, differing only in cues. Synthetic paraphrase variety (synonym substitution, fillers, neutral small-talk turns) is applied to **both** classes. |
+| `trusted_care/data.py` | Persian multi-turn dialogue generator: 80 templates in total (18 benign + 30 malicious from v1/v2, plus 16 benign + 16 malicious added in v3 for validation and the fresh test) over the **same operations and slot values**, differing only in cues. Synthetic paraphrase variety (synonym substitution, fillers, neutral small-talk turns) is applied to **both** classes. |
 | `trusted_care/risk.py` | Risk models: TF-IDF (char 2-5 + word 1-2) + LR; multilingual sentence embeddings (`paraphrase-multilingual-MiniLM-L12-v2`, Persian-capable, CPU) of the conversation, max-pooled turns and last turn + LR; and their average. Chosen by template-grouped 5-fold CV on train only. |
 | `trusted_care/agent.py` | Policy: high risk → block + human escalation; medium → step-up (OTP to registered number + security question); low → OTP for sensitive ops, nothing for others. Caller-number ≠ registered-number forces at least medium (step-up, never a direct block). Block reason (`risk` vs `verification_failed`) is logged. Audit JSONL. |
 | `trusted_care/evaluate.py` | Systems, metrics, dialogue-level bootstrap and template-level cluster bootstrap CIs. |
@@ -94,7 +94,12 @@ streamlit run app.py       # Persian RTL demo (benign vs social-engineering SIM 
 | `app_chat.py` | Streamlit LLM chat demo (needs the LLM env vars). A different configuration from `app.py`: v6 family B (accumulated multi-turn risk), thresholds 0.90 / 0.95, the setting of the LLM end-to-end run. |
 
 Sensitive ops: `change_plan, sim_replacement, account_recovery, ownership_transfer, read_PII`.
-No external language-model API is called.
+The core pipeline (intent detection, risk model, policy, tools, evaluation) calls no external language-model API and runs fully offline.
+An **optional** LLM end-to-end evaluation also exists (`run_llm_dialogues.py`, `trusted_care/llm.py`, `trusted_care/chat.py`): an
+OpenAI-compatible chat endpoint routes each customer turn to a tool and writes the reply, while the risk score and the authorization
+policy stay in code and decide what is executed and which fields the LLM may see. It is configured only through the environment
+variables `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL`; if any is missing it fails loudly instead of falling back. See
+[Optional LLM end-to-end evaluation](#optional-llm-end-to-end-evaluation) below for the recorded results.
 
 ## Evaluation protocol (v3, pre-registered in `results/protocol_v3.md`)
 
@@ -205,6 +210,28 @@ Selected model on test_v3: ROC-AUC 0.967; attack recall @low 0.991 [0.978, 1.000
 v2 thresholds: low=0.15, high=0.3; v3: low=0.15, high=0.75.
 <!-- RESULTS:END -->
 
+## Optional LLM end-to-end evaluation
+
+`LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=... python run_llm_dialogues.py` replays scripted multi-turn dialogues from test_v3 through the
+LLM layer (`trusted_care/chat.py`) with the v6 model and the family-B (accumulated risk) thresholds 0.90 / 0.95. Verification outcomes
+(OTP, security answer) are simulated. The endpoint is read only from `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL`.
+The offline pipeline and the tests do not need it.
+
+Recorded run (from `results_v6/llm_e2e_anthropic__claude-haiku-5.5/summary.json` and `results_v6/NOTES.md`): model `anthropic/claude-haiku-5.5` via
+OpenRouter, temperature 0, 70 dialogues (40 attack / 30 benign, 220 turns), dialogue-level bootstrap 95% CI.
+
+| Metric | Result |
+|---|---|
+| Attack success | 2/40 = 5.0 % [0.0, 12.5] |
+| Benign completion | 26/30 = 86.7 % [73.3, 96.7] |
+| Benign unnecessary step-up | 3/30 = 10.0 % [0.0, 20.0] |
+| Final tool-routing accuracy | 84.3 % [75.7, 91.4] |
+| Dialogues with unauthorised customer data in an LLM prompt | 0 |
+
+Both successful attacks were executed by the policy at low accumulated risk after a simulated OTP pass, i.e. risk-classifier misses, not
+bypasses of the LLM layer. The sample is small and the CIs are wide; the run is not independent of the template authors. These figures are
+for the family-B thresholds and differ from the family-A offline headline (0.65 / 0.70), which `app.py` uses.
+
 ## Honest reading of the results
 
 * With the enlarged validation set the pre-registered rule chose low = 0.15, high = 0.75 (v2: high = 0.30). On the fresh
@@ -219,9 +246,9 @@ v2 thresholds: low=0.15, high=0.3; v3: low=0.15, high=0.75.
 
 ## Limitations
 
-* Synthetic, template-based data (48 templates written by the authors) with synthetic paraphrasing; real calls will differ.
+* Synthetic, template-based data (80 templates written by the authors) with synthetic paraphrasing; real calls will differ.
 * Verification is simulated; the attacker model drives absolute numbers.
-* Threshold tuning on 3 benign validation templates is fragile; more diverse validation data is the most important next step.
+* Threshold tuning on 13 benign validation templates is fragile; more diverse validation data is the most important next step.
 * Intent detection is keyword-based; one intent per conversation.
 * No voice/ASR, no real OTP channel, no human-review loop beyond "escalate".
 
@@ -238,4 +265,5 @@ v2 thresholds: low=0.15, high=0.3; v3: low=0.15, high=0.75.
 data/        dialogues.jsonl, customers_FAKE.json, external/attack_texts.jsonl
 models/      risk_clf.pkl
 results/     results.json, results.md, model_selection_cv.json, preds_<system>.jsonl, audit_log.jsonl
+results_v6/  stepup_results.json, risk_clf_v6.pkl (model used by app.py), threshold selection, protocol_v6.md, NOTES.md, llm_e2e_*/ (optional LLM run)
 ```
