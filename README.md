@@ -1,6 +1,6 @@
 # Trusted Care — AI in Telecom competition project
 
-[![tests](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml/badge.svg)](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue) ![AI in Telecom 2026](https://img.shields.io/badge/AI%20in%20Telecom%202026-competition%20prototype-blueviolet) ![track](https://img.shields.io/badge/track-AI%20Security%2C%20Trust%20and%20Governance-informational) ![status](https://img.shields.io/badge/status-research%20prototype-orange)
+[![tests](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml/badge.svg)](https://github.com/matin-shirazi/trusted-care/actions/workflows/tests.yml) ![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
 
 Trusted Care is our entry to the **AI in Telecom** competition: risk-adaptive authorization for a Persian telecom
 customer-support agent that resists social-engineering (e.g. fraudulent SIM replacement) while keeping genuine
