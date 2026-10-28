@@ -25,7 +25,7 @@ python -m pytest -q                 # unit tests
 python run_all.py                   # data -> model selection -> training -> evaluation -> results/
 python run_v6.py                    # v6 step-up experiments -> results_v6/
 LLM_BASE_URL=... LLM_API_KEY=... LLM_MODEL=... python run_llm_dialogues.py   # optional LLM end-to-end dialogues
-streamlit run app.py                # Persian RTL demo
+streamlit run app.py                # Persian RTL demo (v6 family A, thresholds 0.65 / 0.70)
 streamlit run app_chat.py           # LLM chat demo (needs the LLM env vars and run_v6.py first)
 ```
 
@@ -77,7 +77,7 @@ python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 python run_all.py          # data -> model selection -> training -> evaluation -> results/ + this README's results section
 python -m pytest -q        # unit tests
-streamlit run app.py       # Persian RTL demo (benign vs social-engineering SIM replacement)
+streamlit run app.py       # Persian RTL demo (benign vs social-engineering SIM replacement; v6 family A, 0.65 / 0.70)
 ```
 `run_all.py` downloads the external held-out set if `data/external/attack_texts.jsonl` is missing; if offline it skips it.
 
@@ -90,7 +90,8 @@ streamlit run app.py       # Persian RTL demo (benign vs social-engineering SIM 
 | `trusted_care/risk.py` | Risk models: TF-IDF (char 2-5 + word 1-2) + LR; multilingual sentence embeddings (`paraphrase-multilingual-MiniLM-L12-v2`, Persian-capable, CPU) of the conversation, max-pooled turns and last turn + LR; and their average. Chosen by template-grouped 5-fold CV on train only. |
 | `trusted_care/agent.py` | Policy: high risk → block + human escalation; medium → step-up (OTP to registered number + security question); low → OTP for sensitive ops, nothing for others. Caller-number ≠ registered-number forces at least medium (step-up, never a direct block). Block reason (`risk` vs `verification_failed`) is logged. Audit JSONL. |
 | `trusted_care/evaluate.py` | Systems, metrics, dialogue-level bootstrap and template-level cluster bootstrap CIs. |
-| `app.py` | Streamlit demo (RTL), uses the saved model and the validation-tuned thresholds. |
+| `app.py` | Streamlit demo (RTL). Uses the **v6 family-A** configuration: model `results_v6/risk_clf_v6.pkl`, validation-chosen thresholds low=0.65 / high=0.70 read from `results_v6/stepup_results.json` (see `trusted_care/demo_config.py`). These are the settings behind the v6 family-A test_v3 figures (attack success 0.94 %, benign total block 3.33 %, unnecessary step-up 15.8 %). |
+| `app_chat.py` | Streamlit LLM chat demo (needs the LLM env vars). A different configuration from `app.py`: v6 family B (accumulated multi-turn risk), thresholds 0.90 / 0.95, the setting of the LLM end-to-end run. |
 
 Sensitive ops: `change_plan, sim_replacement, account_recovery, ownership_transfer, read_PII`.
 No external language-model API is called.

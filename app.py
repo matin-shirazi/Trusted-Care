@@ -1,5 +1,11 @@
 """Streamlit demo: Persian RTL chat with risk score, decision and audit trail.
-Run: streamlit run app.py   (requires `python run_all.py` first to train the model)
+Run: streamlit run app.py
+
+Uses the v6 family-A configuration (conversation-level risk score): model results_v6/risk_clf_v6.pkl and the
+validation-chosen thresholds low=0.65 / high=0.70 read from results_v6/stepup_results.json (see
+trusted_care/demo_config.py). This is the setting behind the reported test_v3 figures for A (v6 thresholds):
+attack success 0.94 %, benign total block 3.33 %, unnecessary step-up 15.8 %.
+The older v3 setting (models/risk_clf.pkl, thresholds 0.15 / 0.75) is not used here.
 """
 import json
 import os
@@ -9,6 +15,7 @@ import streamlit as st
 from trusted_care.agent import Agent, Session
 from trusted_care.backend import Backend, make_customers
 from trusted_care import risk
+from trusted_care.demo_config import load_demo_config
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 AUDIT = os.path.join(ROOT, "results", "demo_audit_log.jsonl")
@@ -38,16 +45,17 @@ st.markdown('<h2 class="rtl">Trusted Care — پشتیبانی امن مشترک
 
 @st.cache_resource
 def load_clf():
-    p = os.path.join(ROOT, "models", "risk_clf.pkl")
-    if not os.path.exists(p):
-        st.error("Model not found. Run `python run_all.py` first.")
+    cfg = load_demo_config()
+    if not os.path.exists(cfg["model_path"]):
+        st.error("v6 model not found: results_v6/risk_clf_v6.pkl. Run `python run_v6.py` to regenerate it.")
         st.stop()
-    r = json.load(open(os.path.join(ROOT, "results", "results.json"), encoding="utf-8"))["thresholds"]
-    return risk.load(p), r["low"], r["high"]
+    return risk.load(cfg["model_path"]), cfg
 
 
-clf, LOW, HIGH = load_clf()
-st.caption(f"thresholds (tuned on validation): low={LOW}, high={HIGH}")
+clf, CFG = load_clf()
+LOW, HIGH = CFG["low"], CFG["high"]
+st.caption(f"Demo configuration: {CFG['version']} family A (conversation-level risk), model results_v6/risk_clf_v6.pkl, "
+           f"thresholds low={LOW}, high={HIGH} (chosen on validation, results_v6/stepup_results.json)")
 name = st.selectbox("سناریو", list(SCENARIOS))
 sc = SCENARIOS[name]
 c1, c2, c3 = st.columns(3)
